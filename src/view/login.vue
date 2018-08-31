@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-      <el-card class="box-card">
+    <el-card class="box-card">
       <el-form label-position="top" label-width="80px" :model="ruleForm" :rules="rules" ref="ruleForm">
         <el-form-item label="用户名" prop="name">
           <el-input v-model="ruleForm.name"></el-input>
@@ -14,60 +14,73 @@
           <el-button @click="resetForm('ruleForm')">重置</el-button>
         </el-form-item>
       </el-form>
-      </el-card>
+    </el-card>
   </div>
 </template>
 
 <script>
 
-  import {login} from "../api/getData";
+  import {login} from "../axios/api";
 
   export default {
-      data() {
-        return {
-          ruleForm: {
-            name: '',
-            password:''
-          },
-          rules:{
-            name: [
-              { required: true, message: '请输入用户名', trigger: 'blur' }
-            ],
-            password: [
-              { required: true, message: '请输入密码', trigger: 'blur' },
-            ]
-          }
-        }
-      },
-      methods: {
-         submitForm(formName) {
-          var that=this;
-          this.$refs[formName].validate((valid) => {
-            if (valid) {
-              console.log(res)
-              return false;
-            } else {
-              console.log('error submit!!');
-              return false;
-            }
-          });
+    data() {
+      return {
+        ruleForm: {
+          name: '',
+          password: ''
         },
-        resetForm(formName) {
-          this.$refs[formName].resetFields();
+        rules: {
+          name: [
+            {required: true, message: '请输入用户名', trigger: 'blur'}
+          ],
+          password: [
+            {required: true, message: '请输入密码', trigger: 'blur'},
+          ]
         }
       }
+    },
+    methods: {
+      submitForm(formName) {
+        var that = this;
+        this.$refs[formName].validate((valid) => {
+          if (valid) {
+            login(that.ruleForm.name, that.ruleForm.password).then(res => {
+
+              if (res.data.code == 1) {
+                that.$message({
+                  message: '欢迎👏登录吉安乐宜嘉后台管理系统！',
+                  type: 'success'
+                });
+                that.$router.push('main')
+              } else {
+                that.$message.error(res.data.msg);
+              }
+            }).catch(function (req) {
+
+            })
+          } else {
+            console.log('error submit!!');
+            return false;
+          }
+        });
+      },
+      resetForm(formName) {
+        this.$refs[formName].resetFields();
+      }
     }
+  }
 </script>
 
 <style scoped>
-  .container{
+  .container {
     background-color: #F56C6C;
     height: 100%;
     width: 100%;
     position: absolute;
 
   }
-  .box-card{
+
+  .box-card {
     margin: 0 auto;
     width: 480px;
     top: 30%;

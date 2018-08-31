@@ -1,7 +1,6 @@
 <template>
     <div>
       <el-container>
-        <el-header>Header</el-header>
         <el-container>
           <el-aside width="200px" style="min-height: 100%">
             <el-menu
@@ -29,6 +28,7 @@
                   <i class="el-icon-goods"></i>
                   <span>商品管理</span>
                 </template>
+                <el-menu-item index="category">商品分类</el-menu-item>
                 <el-menu-item index="goodsList">商品列表</el-menu-item>
                 <el-menu-item index="skuList">商品SKU</el-menu-item>
               </el-submenu>
@@ -52,36 +52,54 @@
               </el-submenu>
             </el-menu>
           </el-aside>
-          <el-main>
-            <el-breadcrumb separator="/">
-              <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
-              <el-breadcrumb-item><a href="/">活动管理</a></el-breadcrumb-item>
-              <el-breadcrumb-item>活动列表</el-breadcrumb-item>
-              <el-breadcrumb-item>活动详情</el-breadcrumb-item>
-            </el-breadcrumb>
-            <keep-alive>
-              <router-view></router-view>
-            </keep-alive>
-          </el-main>
+
+          <el-container>
+
+            <el-header style="text-align: right; font-size: 12px">
+              <el-dropdown>
+                <i class="el-icon-setting" style="margin-right: 15px"></i>
+                <el-dropdown-menu slot="dropdown">
+                  <el-dropdown-item>查看</el-dropdown-item>
+                  <el-dropdown-item>新增</el-dropdown-item>
+                  <el-dropdown-item>删除</el-dropdown-item>
+                </el-dropdown-menu>
+              </el-dropdown>
+              <span>王小虎</span>
+            </el-header>
+
+            <el-main>
+              <keep-alive>
+                <router-view></router-view>
+              </keep-alive>
+            </el-main>
+          </el-container>
+
         </el-container>
       </el-container>
     </div>
 </template>
 
 <script>
-    export default {
+  export default {
+      data(){
+        return({
 
+        })
+      },
       computed:{
         activeIndex(){
           return this.$route.path.replace('/','')
         }
       },
+
     }
 </script>
 
 <style scoped>
-  .el-header{
-    background-color: gray;
+  .el-header {
+    background-color: #B3C0D1;
+    color: #333;
+    line-height: 60px;
   }
   .el-aside{
 

@@ -12,6 +12,7 @@ import skuList from '@/view/goods/skuList'
 import banner from '@/view/weixin/banner'
 import customModel from '@/view/weixin/customModel'
 import company from '@/view/company'
+import category from '@/view/category'
 
 Vue.use(Router)
 
@@ -54,6 +55,9 @@ export default new Router({
         },{
           path:'/company',
           component:company
+        },{
+          path:'/category',
+          component:category
         }]
     }
   ]
