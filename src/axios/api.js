@@ -25,20 +25,22 @@ export function getUsers(current) {
   })
 }
 
-//获取用户列表
-export function addUser(userName,password,nickname) {
+//添加用户
+export function addOrUpdateUser(id,userName,password,nickname,del) {
   return fetch({
     url: api.Hallowmas+'/addOrUpdateUser',
     method: 'POST',//请求方法
     params:{
+      id:id,
       userName:userName,
       password:password,
-      nickname:nickname
+      nickname:nickname,
+      del:del
     }
   })
 }
 
-//获取用户列表
+//删除用户
 export function delUser(id) {
   return fetch({
     url: api.Hallowmas+'/delUser',
@@ -48,6 +50,44 @@ export function delUser(id) {
     }
   })
 }
+
+
+
+//分类
+export function getCategorys(current) {
+  return fetch({
+    url: api.Hallowmas+'/getCategorys',
+    method: 'get',//请求方法
+    params:{
+      current:current
+    }
+  })
+}
+
+export function addOrUpdateCategory(id,name,icon,sort) {
+  return fetch({
+    url: api.Hallowmas+'/addOrUpdateCategory',
+    method: 'POST',//请求方法
+    params:{
+      id:id,
+      name:name,
+      icon:icon,
+      sort:sort
+    }
+  })
+}
+
+export function delCategory(id) {
+  return fetch({
+    url: api.Hallowmas+'/delCategory',
+    method: 'POST',//请求方法
+    params:{
+      id:id
+    }
+  })
+}
+
+
 
 //查看用户
 export function lookOption(issuer,userId) { //lookOption是你要调用接口的名字，issuer,userId是传进来的参数

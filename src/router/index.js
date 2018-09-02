@@ -8,6 +8,7 @@ import users from '@/view/users'
 import customers from '@/view/customers'
 import orders from '@/view/order/orders'
 import goodsList from '@/view/goods/goodsList'
+import uploadGoods from '@/view/goods/uploadGoods'
 import skuList from '@/view/goods/skuList'
 import banner from '@/view/weixin/banner'
 import customModel from '@/view/weixin/customModel'
@@ -41,6 +42,10 @@ export default new Router({
         {
           path:'/goodsList',
           component:goodsList
+        },
+        {
+          path:'/uploadGoods',
+          component:uploadGoods
         },
         {
           path:'/skuList',

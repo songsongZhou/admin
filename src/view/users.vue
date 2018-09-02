@@ -38,7 +38,7 @@
           label="操作"
           width="100">
           <template slot-scope="scope">
-            <el-button @click="openDelUserDialog(scope.row.id)" type="text" size="small">删除</el-button>
+            <el-button @click="{id = scope.row.id,dialogVisible=true}" type="text" size="small">删除</el-button>
             <el-button type="text" size="small">编辑</el-button>
           </template>
         </el-table-column>
@@ -78,7 +78,7 @@
 </template>
 
 <script>
-    import {getUsers,addUser,delUser} from "../axios/api";
+    import {getUsers,addOrUpdateUser,delUser} from "../axios/api";
 
     export default {
       data() {
@@ -125,21 +125,19 @@
           })
         },
         addUser(formName) {
-          var that = this;
           this.$refs[formName].validate((valid) => {
             if (valid) {
-                addUser(this.form.userName,this.form.password,this.form.nickname).then(res=>{
-                  console.log(res)
+                addOrUpdateUser(this.form.userName,this.form.password,this.form.nickname).then(res=>{
+                  this.$message({
+                    message:res.data.msg,
+                    type:res.data.code==1?'success':'error'
+                  })
                 })
             } else {
               console.log('error submit!!');
               return false;
             }
           });
-        },
-        openDelUserDialog:function (id) {
-          this.id=id
-          this.dialogVisible=true
         },
         delUser:function () {
           delUser(this.id).then(res=>{
