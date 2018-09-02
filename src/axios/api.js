@@ -87,16 +87,23 @@ export function delCategory(id) {
   })
 }
 
-
-
-//查看用户
-export function lookOption(issuer,userId) { //lookOption是你要调用接口的名字，issuer,userId是传进来的参数
+//商品上传
+export function addOrUpdateGoods(goodsVo) {
   return fetch({
-    //api.Hallowmas 引用url.js里面的数据
-    url: api.Hallowmas+'/halloween/'+issuer+'/question',
+    url: api.Hallowmas+'/addOrUpdateGoods',
+    method: 'POST',//请求方法
+    data:{
+      goodsVo:goodsVo
+    }
+  })
+}
+
+export function getGoods(current) {
+  return fetch({
+    url: api.Hallowmas+'/getGoods',
     method: 'get',//请求方法
     params:{
-      id:userId //传过去的参数
+      current:current
     }
   })
 }
