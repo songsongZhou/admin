@@ -1,19 +1,19 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
-import login from '@/view/login'
-import main from '@/view/main'
+import login from '@/page/login'
+import main from '@/page/main'
 
-import users from '@/view/users'
-import customers from '@/view/customers'
-import orders from '@/view/order/orders'
-import goodsList from '@/view/goods/goodsList'
-import uploadGoods from '@/view/goods/uploadGoods'
-import skuList from '@/view/goods/skuList'
-import banner from '@/view/weixin/banner'
-import customModel from '@/view/weixin/customModel'
-import company from '@/view/company'
-import category from '@/view/category'
+import users from '@/page/users'
+import customers from '@/page/customers'
+import orders from '@/page/order/orders'
+import goodsList from '@/page/goods/goodsList'
+import uploadGoods from '@/page/goods/uploadGoods'
+import skuList from '@/page/goods/skuList'
+import banner from '@/page/weixin/banner'
+import customModel from '@/page/weixin/customModel'
+import company from '@/page/company'
+import category from '@/page/category'
 
 Vue.use(Router)
 
