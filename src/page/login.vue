@@ -45,7 +45,7 @@
         var that = this;
         this.$refs[formName].validate((valid) => {
           if (valid) {
-            this.loginLoading=true
+            that.loginLoading=true
             login(that.ruleForm.name, that.ruleForm.password).then(res => {
               if (res.data.code == 1) {
                 that.$message({
@@ -59,7 +59,7 @@
             }).catch(function (req) {
 
             })
-            this.loginLoading=false
+            that.loginLoading=false
           } else {
             console.log('error submit!!');
             return false;

@@ -4,18 +4,18 @@
       :data="tableData"
       style="width: 100%">
       <el-table-column
-        prop="date"
-        label="日期"
+        prop="createTime"
+        label="创建日期"
         width="180">
       </el-table-column>
       <el-table-column
-        prop="name"
-        label="姓名"
+        prop="userName"
+        label="用户名"
         width="180">
       </el-table-column>
       <el-table-column
-        prop="address"
-        label="地址">
+        prop="nickname"
+        label="昵称">
       </el-table-column>
       <el-table-column
         fixed="right"
@@ -31,26 +31,23 @@
 </template>
 
 <script>
+  import {getCustomer} from "../axios/api";
+
   export default {
     data() {
       return {
-        tableData: [{
-          date: '2016-05-02',
-          name: 'tobi',
-          address: '上海市普陀区金沙江路 1518 弄'
-        }, {
-          date: '2016-05-04',
-          name: 'zhoumouren',
-          address: '上海市普陀区金沙江路 1517 弄'
-        }, {
-          date: '2016-05-01',
-          name: 'wangmouren',
-          address: '上海市普陀区金沙江路 1519 弄'
-        }, {
-          date: '2016-05-03',
-          name: 'songmouren',
-          address: '上海市普陀区金沙江路 1516 弄'
-        }]
+        tableData: []
+      }
+    },
+    created(){
+      this.getData(1)
+    },
+    methods:{
+      getData:function (current) {
+        getCustomer(current).then(res=>{
+          console.log(res)
+          this.tableData=res.data.records
+        })
       }
     }
   }

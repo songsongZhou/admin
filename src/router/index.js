@@ -1,68 +1,56 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
-import login from '@/page/login'
-import main from '@/page/main'
-
-import users from '@/page/users'
-import customers from '@/page/customers'
-import orders from '@/page/order/orders'
-import goodsList from '@/page/goods/goodsList'
-import uploadGoods from '@/page/goods/uploadGoods'
-import skuList from '@/page/goods/skuList'
-import banner from '@/page/weixin/banner'
-import customModel from '@/page/weixin/customModel'
-import company from '@/page/company'
-import category from '@/page/category'
-
 Vue.use(Router)
 
 export default new Router({
   routes: [
     {
       path:'/',
-      component:login
+      component:()=> import("@/page/login")
     },
     {
       path: '/main',
-      name: '后台管理系统',
-      component: main,
+      component:()=> import("@/page/main"),
       children: [{
+        path:'/',
+        component:()=> import("@/page/default")
+      },{
         path:'/users',
-        component:users
+        component:()=> import("@/page/users")
       },
         {
           path:'/customers',
-          component:customers
+          component:()=> import("@/page/customers")
         },
         {
           path:'/orders',
-          component:orders
+          component:()=> import("@/page/order/orders")
         },
         {
           path:'/goodsList',
-          component:goodsList
+          component:()=> import("@/page/goods/goodsList")
         },
         {
           path:'/uploadGoods',
-          component:uploadGoods
+          component:()=> import("@/page/goods/uploadGoods")
         },
         {
           path:'/skuList',
-          component:skuList
+          component:()=> import("@/page/goods/skuList")
         },
         {
           path:'/banner',
-          component:banner
+          component:()=> import("@/page/weixin/banner")
         },{
           path:'/customModel',
-          component:customModel
+          component:()=> import("@/page/weixin/customModel")
         },{
           path:'/company',
-          component:company
+          component:()=> import("@/page/company")
         },{
           path:'/category',
-          component:category
+          component:()=> import("@/page/category")
         }]
     }
   ]
