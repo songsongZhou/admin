@@ -10,7 +10,7 @@
         </el-form-item>
 
         <el-form-item>
-          <el-button type="primary" @click="submitForm('ruleForm')">登录</el-button>
+          <el-button type="primary" @click="submitForm('ruleForm')" :loading="loginLoading">登录</el-button>
           <el-button @click="resetForm('ruleForm')">重置</el-button>
         </el-form-item>
       </el-form>
@@ -25,6 +25,7 @@
   export default {
     data() {
       return {
+        loginLoading:false,
         ruleForm: {
           name: '',
           password: ''
@@ -44,8 +45,8 @@
         var that = this;
         this.$refs[formName].validate((valid) => {
           if (valid) {
+            this.loginLoading=true
             login(that.ruleForm.name, that.ruleForm.password).then(res => {
-
               if (res.data.code == 1) {
                 that.$message({
                   message: '欢迎👏登录吉安乐宜嘉后台管理系统！',
@@ -58,6 +59,7 @@
             }).catch(function (req) {
 
             })
+            this.loginLoading=false
           } else {
             console.log('error submit!!');
             return false;
